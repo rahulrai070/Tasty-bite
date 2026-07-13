@@ -3,51 +3,154 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tasty Bites</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Tasty Bites — Order Food Online</title>
+    <meta
+      name="description"
+      content="Browse the menu, build your order and check out — a responsive, mobile-first food ordering interface."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
-      <h1>Tasty bite</h1>
+    <!-- ===== Header ===== -->
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a href="#" class="logo">Tasty<span>Bites</span></a>
+        <button
+          class="cart-toggle"
+          id="cartToggle"
+          aria-label="Open cart"
+          aria-expanded="false"
+          aria-controls="cartDrawer"
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="9" cy="21" r="1" />
+            <circle cx="20" cy="21" r="1" />
+            <path
+              d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+            />
+          </svg>
+          <span class="cart-toggle__badge" id="cartCount">0</span>
+        </button>
+      </div>
     </header>
-    <section class="banner">
-      <img src="banner.avif" alt="Tasty bite Image">
-    </section>
 
-    <section class="about-section">
-      <h2>About Tasty bite</h2>
-      <div class="aboutContent">
-        <p>We are here to serve you the most delicious food</p>
-        <p>Image placeholder</p>
-      </div>
-    </section>
-
-    <section class="menu-section">
-      <h2>Our Menu</h2>
-
-      <div class="menu-item">
-        <img src="magrita.jpg" alt="" class="menu-img">
-        <span class="dish-name"> Margrita Pizza</span>
-        <button>Order Now</button>
-      </div>
-      <div class="menu-item">
-        <img src="peppyPaneer.jpg" alt="" class="menu-img">
-        <span class="dish-name">Peppy Paneer</span>
-        <button>Order Now</button>
-      </div>
-      <div class="menu-item">
-        <img src="GrilledSalmon.jpg" alt="" class="menu-img">
-        <span class="dish-name">Grilled Salmon</span>
-        <button>Order Now</button>
-      </div>
-
-      <footer>
-        <p>
-          <a href="#">Contact</a> | <a href="#">Privacy</a> |
-          <a href="#">FAQ</a>
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <div class="hero__content">
+        <p class="hero__eyebrow">Kitchen open now</p>
+        <h1 class="hero__title">Real food,<br />made to order.</h1>
+        <p class="hero__sub">
+          Pick your dishes, build your ticket, send it to the kitchen. No
+          account, no hassle — just lunch.
         </p>
-        <p>@ 2026, TastyBite</p>
-      </footer>
+        <a href="#menu" class="btn btn--primary">View the menu</a>
+      </div>
     </section>
+
+    <!-- ===== Category filter ===== -->
+    <nav class="category-nav" id="categoryNav" aria-label="Menu categories">
+      <button class="chip is-active" data-category="all">All</button>
+      <button class="chip" data-category="starters">Starters</button>
+      <button class="chip" data-category="mains">Mains</button>
+      <button class="chip" data-category="drinks">Drinks</button>
+    </nav>
+
+    <!-- ===== Menu ===== -->
+    <main>
+      <section class="menu" id="menu">
+        <div class="menu__grid" id="menuGrid" aria-live="polite">
+          <!-- menu cards injected by script.js -->
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="site-footer">
+      <p class="site-footer__links">
+        <a href="#">Contact</a> · <a href="#">Privacy</a> · <a href="#">FAQ</a>
+      </p>
+      <p class="site-footer__copy">© 2026 Tasty Bites</p>
+    </footer>
+
+    <!-- ===== Sticky mobile order bar ===== -->
+    <button class="order-bar" id="orderBar" hidden>
+      <span id="orderBarCount">0 items</span>
+      <span class="order-bar__divider">·</span>
+      <span id="orderBarTotal">$0.00</span>
+      <span class="order-bar__cta">View order →</span>
+    </button>
+
+    <!-- ===== Cart drawer (the "kitchen ticket") ===== -->
+    <div class="cart-scrim" id="cartScrim"></div>
+    <aside
+      class="cart-drawer"
+      id="cartDrawer"
+      aria-label="Your order"
+      aria-hidden="true"
+    >
+      <div class="ticket">
+        <div class="ticket__head">
+          <h2>Order Ticket</h2>
+          <button class="ticket__close" id="cartClose" aria-label="Close cart">
+            &times;
+          </button>
+        </div>
+        <p class="ticket__meta" id="ticketMeta">
+          Ticket #— · <span id="ticketDate"></span>
+        </p>
+
+        <div class="ticket__items" id="cartItems">
+          <!-- cart line items injected by script.js -->
+        </div>
+
+        <div class="ticket__empty" id="cartEmpty">
+          <p>Your ticket is empty.</p>
+          <p class="ticket__empty-sub">Add something tasty from the menu.</p>
+        </div>
+
+        <div class="ticket__divider" aria-hidden="true"></div>
+
+        <div class="ticket__totals">
+          <div class="ticket__row">
+            <span>Subtotal</span>
+            <span id="cartSubtotal">$0.00</span>
+          </div>
+          <div class="ticket__row">
+            <span>Service (8%)</span>
+            <span id="cartService">$0.00</span>
+          </div>
+          <div class="ticket__row ticket__row--total">
+            <span>Total</span>
+            <span id="cartTotal">$0.00</span>
+          </div>
+        </div>
+
+        <button class="btn btn--primary btn--block" id="checkoutBtn">
+          Send to kitchen
+        </button>
+      </div>
+    </aside>
+
+    <!-- ===== Toast ===== -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
   </body>
 </html>
