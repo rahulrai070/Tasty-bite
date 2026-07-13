@@ -1,6 +1,6 @@
 /* =========================================================
-   Tasty Bites — Ordering Interface
-   Menu rendering · category filtering · cart management
+  Tasty Bites — Ordering Interface
+  Menu rendering · category filtering · cart management
    ========================================================= */
 
 (function () {
@@ -46,7 +46,7 @@
       category: "starters",
       price: 7.0,
       desc: "Golden fried squid, chili aioli, lime.",
-      img: "https://images.unsplash.com/photo-1668679475568-4634937bc4f4?q=80&w=600&auto=format&fit=crop",
+      img: "https://images.unsplash.com/photo-1530524428108-f983ca74ad0f?q=80&w=600&auto=format&fit=crop",
     },
     {
       id: "soup",
@@ -186,7 +186,7 @@
                       <button type="button" data-action="dec" aria-label="Remove one">−</button>
                       <span>${qty}</span>
                       <button type="button" data-action="inc" aria-label="Add one">+</button>
-                     </div>`
+                    </div>`
                   : `<button type="button" class="add-btn" data-action="add" data-id="${dish.id}">Add</button>`
               }
             </div>
